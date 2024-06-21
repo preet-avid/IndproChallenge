@@ -1,0 +1,95 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link href="~/assets/css/material-kit.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="loader"></div>
+    <div class="card" id="loginCard">
+        <img src="/assets/img/logo.png" alt="Logo" class="logo">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="loginUsername">Username</label>
+                <input type="text" class="form-control" id="loginUsername" placeholder="Enter username" name="username" maxlength="255" required>
+            </div>
+            <div class="form-group password-toggle">
+                <label for="loginPassword">Password</label>
+                <input type="password" class="form-control" id="loginPassword" placeholder="Password" name="password" minlength="6" required>
+                <i class="fa fa-eye" id="toggleLoginPassword" onclick="togglePasswordVisibility('loginPassword')"></i>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
+        </form>
+        <label class="mt-5 text-center">Don't have an account?</label>
+        <div class="form-toggle" onclick="toggleForm()">Sign Up</div>
+    </div>
+
+    <div class="card hidden" id="signupCard">
+        <img src="/assets/img/logo.png" alt="Logo" class="logo">
+        <h2>Sign Up</h2>
+        <form id="signupForm">
+            <div class="form-group">
+                <label for="signupUsername">Username</label>
+                <input type="text" class="form-control" id="signupUsername" placeholder="Enter username" name="username" maxlength="255" required>
+            </div>
+            <div class="form-group">
+                <label for="signupEmail">Email address</label>
+                <input type="email" class="form-control" id="signupEmail" placeholder="Enter email" name="email" maxlength="255" required>
+            </div>
+            <div class="form-group password-toggle">
+                <label for="signupPassword">Password</label>
+                <input type="password" class="form-control" id="signupPassword" placeholder="Password" name="password" minlength="6" required>
+                <i class="fa fa-eye" id="toggleSignupPassword" onclick="togglePasswordVisibility('signupPassword')"></i>
+            </div>
+            <div class="form-group password-toggle">
+                <label for="signupConfirmPassword">Confirm Password</label>
+                <input type="password" class="form-control" id="signupConfirmPassword" placeholder="Confirm Password" name="confirmPassword" required>
+                <i class="fa fa-eye" id="toggleSignupConfirmPassword" onclick="togglePasswordVisibility('signupConfirmPassword')"></i>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+        </form>
+        <label class="mt-5 text-center">Already have an account? </label>
+        <div class="form-toggle" onclick="toggleForm()">Login</div>
+    </div>
+
+    <!-- Bootstrap JS (optional for dropdowns, modals, etc.) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
+    <script src="~/js/login.js"></script>
+
+    <script>
+        function toggleForm() {
+            $('#loginCard').toggleClass('hidden');
+            $('#signupCard').toggleClass('hidden');
+        }
+
+        function togglePasswordVisibility(id) {
+            var input = document.getElementById(id);
+            var icon = input.nextElementSibling;
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+    </script>
+
+</body>
+</html>
